@@ -1,13 +1,41 @@
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Button, Box } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Button, Box, IconButton } from '@mui/material';
 import { ProductItemInterface } from '../redux/slices/productsSlice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../redux/store';
+import { addItem, updateItemCount, cartItemsSelector, CartItem } from '../redux/slices/cartSlice';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 interface ProductItemProps {
   product: ProductItemInterface;
 }
 
 export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
-  const { title, image, category, price } = product;
+  const { title, image, category, price, id } = product;
+
+  const dispatch = useAppDispatch();
+  const itemsInCart = useSelector(cartItemsSelector);
+  const cartItem = itemsInCart.find((item) => item.id === id);
+
+  const handleAddToCart = () => {
+    if (!cartItem) {
+      const cartItemData: CartItem = {
+        id,
+        title,
+        image,
+        price,
+        count: 1,
+      };
+      dispatch(addItem(cartItemData));
+    }
+  };
+
+  const updateCount = (delta: number) => {
+    if (cartItem) {
+      dispatch(updateItemCount({ id: cartItem.id, delta }));
+    }
+  };
 
   return (
     <Card
@@ -34,7 +62,6 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           objectFit: 'contain',
         }}
       />
-
       <CardContent
         sx={{
           display: 'flex',
@@ -68,12 +95,32 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
               justifyContent: 'space-between',
               alignItems: 'center',
               gap: '16px',
+              height: '40px',
             }}
           >
             <Typography variant="h6">${price}</Typography>
-            <Button variant="contained" color="primary">
-              Buy
-            </Button>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              {cartItem && cartItem.count > 0 ? (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <IconButton onClick={() => updateCount(-1)}>
+                    <RemoveIcon />
+                  </IconButton>
+                  <Typography>{cartItem.count}</Typography>
+                  <IconButton onClick={() => updateCount(1)}>
+                    <AddIcon />
+                  </IconButton>
+                </Box>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleAddToCart}
+                  sx={{ width: '110px' }}
+                >
+                  Buy
+                </Button>
+              )}
+            </Box>
           </Box>
         </Box>
       </CardContent>
