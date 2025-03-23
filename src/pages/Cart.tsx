@@ -1,7 +1,15 @@
 import { Typography, Box } from '@mui/material';
 
+import { useSelector } from 'react-redux';
+import { cartSelector } from '../redux/slices/cartSlice';
+import { ErrorPage } from '../components/ErrorPage';
+
 export const Cart: React.FC = () => {
-  return (
+  const { totalPrice, totalCount } = useSelector(cartSelector);
+
+  return !totalCount ? (
+    <ErrorPage page="EmptyCart" />
+  ) : (
     <Box
       sx={{
         display: 'flex',

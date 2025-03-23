@@ -1,7 +1,19 @@
 import { Button, Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { ERROR_DATA } from '../errorData';
 
-export const NotFound: React.FC = () => {
+interface ErrorPageProps {
+  page: string;
+}
+
+export const ErrorPage: React.FC<ErrorPageProps> = ({ page }) => {
+  const errorContent = ERROR_DATA.find((error) => error.page === page)?.content;
+
+  if (!errorContent) {
+    return <Box>Page not found</Box>;
+  }
+
+  const { title, text } = errorContent;
   return (
     <Box
       sx={{
@@ -15,11 +27,10 @@ export const NotFound: React.FC = () => {
       }}
     >
       <Typography variant="h2" sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', sm: '3rem' } }}>
-        Error 404
+        {title}
       </Typography>
       <Typography variant="body1" sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}>
-        Something went wrong! The page you are looking for does not exist. It may have been moved,
-        deleted, or you might have typed the wrong address.
+        {text}
       </Typography>
       <Link to="/" style={{ textDecoration: 'none' }}>
         <Button variant="contained" color="primary">

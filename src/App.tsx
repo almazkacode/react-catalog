@@ -4,8 +4,9 @@ import './App.css';
 
 import { Home } from './pages/Home';
 import { Cart } from './pages/Cart';
-import { NotFound } from './pages/NotFound';
+
 import { Header } from './components/Header';
+import { ErrorPage } from './components/ErrorPage';
 
 export const App = () => {
   return (
@@ -17,7 +18,7 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<ErrorPage page="NotFound" />} />
           </Routes>
         </Box>
       </Container>

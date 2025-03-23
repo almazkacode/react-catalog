@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../redux/store';
 import { fetchProducts, productsSelector } from '../redux/slices/productsSlice';
 
-import { ProductItem } from '../components/ProductItem';
-import { Skeleton } from '../components/Skeleton';
+import { ProductItem } from '../components/ProductItem/ProductItem';
+import { Skeleton } from '../components/ProductItem/Skeleton';
 
 export const Home: React.FC = () => {
   const dispatch = useAppDispatch();

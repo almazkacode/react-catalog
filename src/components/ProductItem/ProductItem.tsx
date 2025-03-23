@@ -1,9 +1,14 @@
 import React from 'react';
 import { Card, CardContent, CardMedia, Typography, Button, Box, IconButton } from '@mui/material';
-import { ProductItemInterface } from '../redux/slices/productsSlice';
+import { ProductItemInterface } from '../../redux/slices/productsSlice';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../redux/store';
-import { addItem, updateItemCount, cartItemsSelector, CartItem } from '../redux/slices/cartSlice';
+import { useAppDispatch } from '../../redux/store';
+import {
+  addItem,
+  updateItemCount,
+  cartItemsSelector,
+  CartItem,
+} from '../../redux/slices/cartSlice';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
