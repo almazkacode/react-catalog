@@ -11,16 +11,21 @@ export interface CartItem {
 
 interface CartSliceState {
   totalPrice: number;
+  totalCount: number;
   items: CartItem[];
 }
 
 const initialState: CartSliceState = {
   totalPrice: 0,
+  totalCount: 0,
   items: [],
 };
 
-const calculateTotalPrice = (items: CartItem[]) => {
-  return items.reduce((acc, item) => acc + item.price * item.count, 0);
+const calculateTotalPriceAndCount = (items: CartItem[]) => {
+  return {
+    totalPrice: items.reduce((acc, item) => acc + item.price * item.count, 0),
+    totalCount: items.reduce((sum, item) => sum + item.count, 0),
+  };
 };
 
 export const cartSlice = createSlice({
@@ -33,16 +38,14 @@ export const cartSlice = createSlice({
       if (!findItem) {
         state.items.push({ ...action.payload, count: 1 });
       }
-
-      state.totalPrice = calculateTotalPrice(state.items);
     },
     removeItem(state, action: PayloadAction<{ id: number }>) {
       state.items = state.items.filter((obj) => obj.id !== action.payload.id);
-      state.totalPrice = calculateTotalPrice(state.items);
     },
     clearItems(state) {
       state.items = [];
       state.totalPrice = 0;
+      state.totalCount = 0;
     },
     updateItemCount(state, action: PayloadAction<{ id: number; delta: number }>) {
       const { id, delta } = action.payload;
@@ -55,13 +58,22 @@ export const cartSlice = createSlice({
           findItem.count += delta;
         }
       }
-
-      state.totalPrice = calculateTotalPrice(state.items);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      (action) => action.type.startsWith('cart/'),
+      (state) => {
+        const { totalPrice, totalCount } = calculateTotalPriceAndCount(state.items);
+        state.totalPrice = totalPrice;
+        state.totalCount = totalCount;
+      },
+    );
   },
 });
 
 export const cartTotalPriceSelector = (state: RootState) => state.cart.totalPrice;
+export const cartTotalCountSelector = (state: RootState) => state.cart.totalCount;
 export const cartItemsSelector = (state: RootState) => state.cart.items;
 
 export const { addItem, removeItem, clearItems, updateItemCount } = cartSlice.actions;
