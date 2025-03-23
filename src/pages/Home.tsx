@@ -31,21 +31,35 @@ export const Home: React.FC = () => {
           Error accessing the server 😔
         </Typography>
       ) : (
-        <Grid container spacing={3} justifyContent="center">
-          {content.map((component, index) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              key={index}
-              sx={{ display: 'flex', justifyContent: 'center' }}
-            >
-              {component}
-            </Grid>
-          ))}
-        </Grid>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+          <Typography
+            variant="h3"
+            component="h2"
+            sx={{
+              fontSize: {
+                xs: 36,
+                md: 48,
+              },
+            }}
+          >
+            Catalog
+          </Typography>
+          <Grid container spacing={3} justifyContent="center">
+            {content.map((component, index) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                key={index}
+                sx={{ display: 'flex', justifyContent: 'center' }}
+              >
+                {component}
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
       )}
     </Box>
   );
