@@ -25,7 +25,7 @@ export const Home: React.FC = () => {
   }
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', padding: '50px' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', padding: '50px 0' }}>
       {status === 'error' ? (
         <Typography variant="h4" color="error">
           Error accessing the server 😔

@@ -20,7 +20,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         height: 'auto',
         padding: '24px',
         paddingBottom: '0',
-        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0 5px 10px rgba(0, 0, 0, 0.1)',
         borderRadius: '8px',
       }}
     >
