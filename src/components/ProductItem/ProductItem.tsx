@@ -1,16 +1,11 @@
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Button, Box, IconButton } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Button, Box } from '@mui/material';
 import { ProductItemInterface } from '../../redux/slices/productsSlice';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
-import {
-  addItem,
-  updateItemCount,
-  cartItemsSelector,
-  CartItem,
-} from '../../redux/slices/cartSlice';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import { addItem, cartItemsSelector, CartItem } from '../../redux/slices/cartSlice';
+
+import { CountButton } from '../CountButton';
 
 interface ProductItemProps {
   product: ProductItemInterface;
@@ -33,12 +28,6 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         count: 1,
       };
       dispatch(addItem(cartItemData));
-    }
-  };
-
-  const updateCount = (delta: number) => {
-    if (cartItem) {
-      dispatch(updateItemCount({ id: cartItem.id, delta }));
     }
   };
 
@@ -106,15 +95,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             <Typography variant="h6">${price}</Typography>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               {cartItem && cartItem.count > 0 ? (
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <IconButton onClick={() => updateCount(-1)}>
-                    <RemoveIcon />
-                  </IconButton>
-                  <Typography>{cartItem.count}</Typography>
-                  <IconButton onClick={() => updateCount(1)}>
-                    <AddIcon />
-                  </IconButton>
-                </Box>
+                <CountButton id={cartItem.id} count={cartItem.count} />
               ) : (
                 <Button
                   variant="contained"
