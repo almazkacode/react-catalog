@@ -23,7 +23,9 @@ const initialState: CartSliceState = {
 
 const calculateTotalPriceAndCount = (items: CartItem[]) => {
   return {
-    totalPrice: items.reduce((acc, item) => acc + item.price * item.count, 0),
+    totalPrice: parseFloat(
+      items.reduce((acc, item) => acc + item.price * item.count, 0).toFixed(2),
+    ),
     totalCount: items.reduce((sum, item) => sum + item.count, 0),
   };
 };
@@ -72,9 +74,8 @@ export const cartSlice = createSlice({
   },
 });
 
-export const cartTotalPriceSelector = (state: RootState) => state.cart.totalPrice;
-export const cartTotalCountSelector = (state: RootState) => state.cart.totalCount;
 export const cartItemsSelector = (state: RootState) => state.cart.items;
+export const cartSelector = (state: RootState) => state.cart;
 
 export const { addItem, removeItem, clearItems, updateItemCount } = cartSlice.actions;
 

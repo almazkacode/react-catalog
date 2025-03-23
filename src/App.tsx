@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Container, Box, CssBaseline } from '@mui/material';
+import './App.css';
 
 import { Home } from './pages/Home';
 import { Cart } from './pages/Cart';

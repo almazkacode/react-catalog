@@ -1,13 +1,13 @@
 import { Typography, Box, IconButton, Badge, Container } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 
 import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { cartSelector } from '../redux/slices/cartSlice';
 
 export const Header = () => {
   const location = useLocation();
-
-  const count = 5;
+  const { totalPrice, totalCount } = useSelector(cartSelector);
 
   return (
     <Box
@@ -30,41 +30,48 @@ export const Header = () => {
         }}
       >
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Box
+          <Typography
+            variant="h4"
+            component="h1"
             sx={{
               display: 'flex',
               alignItems: 'center',
-              gap: 1,
               height: '55px',
+              fontSize: {
+                xs: 20,
+                sm: 36,
+              },
             }}
           >
-            <ShoppingBagOutlinedIcon
-              sx={{
-                fontSize: {
-                  xs: 26,
-                  sm: 36,
-                },
-              }}
-            />
-            <Typography
-              variant="h4"
-              component="h1"
-              sx={{
-                fontSize: {
-                  xs: 20,
-                  sm: 36,
-                },
-              }}
-            >
-              Product Catalog
-            </Typography>
-          </Box>
+            Photo Point
+          </Typography>
         </Link>
 
         {location.pathname !== '/cart' && (
-          <Link to="/cart">
+          <Link
+            to="/cart"
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: 2,
+              textDecoration: 'none',
+              color: 'inherit',
+            }}
+          >
+            <Typography
+              variant="h5"
+              sx={{
+                fontSize: {
+                  xs: 20,
+                  sm: 28,
+                },
+              }}
+            >
+              ${totalPrice}
+            </Typography>
             <IconButton>
-              <Badge badgeContent={count} color="primary">
+              <Badge badgeContent={totalCount} color="primary">
                 <ShoppingCartIcon
                   sx={{
                     fontSize: {
