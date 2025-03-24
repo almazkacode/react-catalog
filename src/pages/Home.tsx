@@ -31,7 +31,7 @@ export const Home: React.FC = () => {
           Error accessing the server 😔
         </Typography>
       ) : (
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
           <Typography
             variant="h3"
             component="h2"
