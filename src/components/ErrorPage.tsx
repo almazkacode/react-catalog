@@ -4,9 +4,10 @@ import { ERROR_DATA } from '../errorData';
 
 interface ErrorPageProps {
   page: string;
+  showButton?: boolean;
 }
 
-export const ErrorPage: React.FC<ErrorPageProps> = ({ page }) => {
+export const ErrorPage: React.FC<ErrorPageProps> = ({ page, showButton = true }) => {
   const errorContent = ERROR_DATA.find((error) => error.page === page)?.content;
 
   if (!errorContent) {
@@ -32,11 +33,13 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({ page }) => {
       <Typography variant="body1" sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}>
         {text}
       </Typography>
-      <Link to="/" style={{ textDecoration: 'none' }}>
-        <Button variant="contained" color="primary">
-          Go to Home
-        </Button>
-      </Link>
+      {showButton && (
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Button variant="contained" color="primary">
+            Go to Catalog
+          </Button>
+        </Link>
+      )}
     </Box>
   );
 };

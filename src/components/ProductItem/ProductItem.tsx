@@ -38,7 +38,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
-        maxWidth: '300px',
+        minWidth: '270px',
         height: 'auto',
         padding: '24px',
         paddingBottom: '0',

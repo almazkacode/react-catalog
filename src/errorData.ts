@@ -13,4 +13,11 @@ export const ERROR_DATA = [
       text: 'Most likely, you have not ordered anything yet. To place an order, go to the main page.',
     },
   },
+  {
+    page: 'EmptyFilter',
+    content: {
+      title: 'No products found',
+      text: 'Try resetting the filters and entering different search parameters.',
+    },
+  },
 ];
