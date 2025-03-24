@@ -50,7 +50,7 @@ export const Search = () => {
       }}
       fullWidth
       sx={{
-        maxWidth: '250px',
+        maxWidth: 250,
       }}
     />
   );

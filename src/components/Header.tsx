@@ -24,8 +24,8 @@ export const Header = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: {
-            xs: '20px',
-            sm: '24px',
+            xs: 2,
+            sm: 3,
           },
         }}
       >
@@ -36,7 +36,7 @@ export const Header = () => {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              height: '55px',
+              height: 55,
               fontSize: {
                 xs: 20,
                 sm: 36,

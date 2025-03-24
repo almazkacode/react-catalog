@@ -73,7 +73,7 @@ export const Home: React.FC = () => {
           >
             <Search />
           </Box>
-          {!filteredItems.length ? (
+          {!filteredItems.length && status === 'success' ? (
             <ErrorPage page="EmptyFilter" showButton={false} />
           ) : (
             <Grid container spacing={3}>

@@ -27,10 +27,10 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({ page, showButton = true })
         padding: { xs: 4, sm: 15 },
       }}
     >
-      <Typography variant="h2" sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', sm: '3rem' } }}>
+      <Typography variant="h2" sx={{ fontWeight: 'bold', fontSize: { xs: 32, sm: 48 } }}>
         {title}
       </Typography>
-      <Typography variant="body1" sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+      <Typography variant="body1" sx={{ fontSize: { xs: 14, sm: 16 } }}>
         {text}
       </Typography>
       {showButton && (

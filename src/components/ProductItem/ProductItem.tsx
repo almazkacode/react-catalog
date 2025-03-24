@@ -38,12 +38,12 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
-        minWidth: '270px',
+        minWidth: 270,
         height: 'auto',
-        padding: '24px',
-        paddingBottom: '0',
+        padding: 3,
+        paddingBottom: 0,
         boxShadow: '0 5px 10px rgba(0, 0, 0, 0.1)',
-        borderRadius: '8px',
+        borderRadius: 1,
       }}
     >
       <CardMedia
@@ -52,7 +52,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         alt={title}
         sx={{
           width: '100%',
-          height: '200px',
+          height: 200,
           objectFit: 'contain',
         }}
       />
@@ -61,7 +61,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          gap: '8px',
+          gap: 1,
           flexGrow: 1,
           width: '100%',
           padding: '24px 0 0',
@@ -76,7 +76,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            gap: '8px',
+            gap: 1,
             marginTop: 'auto',
           }}
         >
@@ -88,8 +88,8 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              gap: '16px',
-              height: '40px',
+              gap: 2,
+              height: 40,
             }}
           >
             <Typography variant="h6">${price}</Typography>
@@ -101,7 +101,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
                   variant="contained"
                   color="primary"
                   onClick={handleAddToCart}
-                  sx={{ width: '110px' }}
+                  sx={{ width: 110 }}
                 >
                   Buy
                 </Button>
