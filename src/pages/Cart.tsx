@@ -7,7 +7,7 @@ import { cartSelector, clearItems } from '../redux/slices/cartSlice';
 import { ErrorPage } from '../components/ErrorPage';
 import CartItem from '../components/CartItem';
 
-export const Cart: React.FC = () => {
+const Cart: React.FC = () => {
   const { totalPrice, totalCount, items } = useSelector(cartSelector);
   const dispatch = useAppDispatch();
 
@@ -101,3 +101,5 @@ export const Cart: React.FC = () => {
     </Box>
   );
 };
+
+export default Cart;

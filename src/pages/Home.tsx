@@ -10,7 +10,7 @@ import { Skeleton } from '../components/ProductItem/Skeleton';
 import { Search } from '../components/Search';
 import { ErrorPage } from '../components/ErrorPage';
 
-export const Home: React.FC = () => {
+const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const { items, status } = useSelector(productsSelector);
   const { searchValue } = useSelector(filterSelector);
@@ -97,3 +97,5 @@ export const Home: React.FC = () => {
     </Box>
   );
 };
+
+export default Home;
