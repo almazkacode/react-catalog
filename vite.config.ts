@@ -11,6 +11,9 @@ export default defineConfig({
     outDir: 'dist',
   },
   base: '/',
+  define: {
+    'process.env': {},
+  },
   css: {
     preprocessorOptions: {
       scss: {
