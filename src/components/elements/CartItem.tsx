@@ -35,16 +35,23 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
         borderRadius: 1,
       }}
     >
-      <CardMedia
-        component="img"
-        image={item.image}
-        alt={item.title}
+      <Box
         sx={{
           width: 80,
           height: 80,
-          objectFit: 'contain',
         }}
-      />
+      >
+        <CardMedia
+          component="img"
+          image={item.image}
+          alt={item.title}
+          sx={{
+            width: 80,
+            height: 80,
+            objectFit: 'contain',
+          }}
+        />
+      </Box>
 
       <Box
         sx={{
