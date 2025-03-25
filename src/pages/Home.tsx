@@ -9,11 +9,13 @@ import { ProductItem } from '../components/elements/ProductItem/ProductItem';
 import { Skeleton } from '../components/elements/ProductItem/Skeleton';
 import { Search } from '../components/features/Search';
 import { ErrorPage } from '../components/elements/ErrorPage';
+import { CategorySelect } from '../components/features/Filters/CategorySelect';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const { items, status } = useSelector(productsSelector);
-  const { searchValue } = useSelector(filterSelector);
+  const { searchValue, category } = useSelector(filterSelector);
+  const uniqueCategories = Array.from(new Set(items.map((product) => product.category)));
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,7 +24,8 @@ const Home: React.FC = () => {
 
   const filteredItems = items.filter((item) => {
     const searchFilter = item.title.toLowerCase().includes(searchValue.toLowerCase());
-    return searchFilter;
+    const categoryFilter = category === 'all' || item.category === category;
+    return searchFilter && categoryFilter;
   });
 
   let content;
@@ -72,6 +75,19 @@ const Home: React.FC = () => {
             }}
           >
             <Search />
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: {
+                xs: 'center',
+                md: 'space-between',
+              },
+              alignItems: 'center',
+              width: '100%',
+            }}
+          >
+            <CategorySelect categories={uniqueCategories} />
           </Box>
           {!filteredItems.length && status === 'success' ? (
             <ErrorPage page="EmptyFilter" showButton={false} />
