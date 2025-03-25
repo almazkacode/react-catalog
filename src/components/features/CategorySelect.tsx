@@ -1,8 +1,8 @@
 import { MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 
-import { useAppDispatch, useAppSelector } from '../../../redux/store';
-import { filterSelector, setCategories } from '../../../redux/slices/filterSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { filterSelector, setCategories } from '../../redux/slices/filterSlice';
 
 interface CategorySelectProps {
   categories: string[];
@@ -17,7 +17,13 @@ export const CategorySelect: React.FC<CategorySelectProps> = ({ categories }) =>
   };
 
   return (
-    <FormControl fullWidth variant="outlined">
+    <FormControl
+      fullWidth
+      variant="outlined"
+      sx={{
+        maxWidth: 300,
+      }}
+    >
       <InputLabel
         sx={{
           bgcolor: 'white',

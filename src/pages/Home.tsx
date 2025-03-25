@@ -3,13 +3,13 @@ import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../redux/store';
 import { fetchProducts, productsSelector } from '../redux/slices/productsSlice';
-import { filterSelector } from '../redux/slices/filterSlice';
+import { filterSelector, clearFilters } from '../redux/slices/filterSlice';
 
 import { ProductItem } from '../components/elements/ProductItem/ProductItem';
 import { Skeleton } from '../components/elements/ProductItem/Skeleton';
 import { Search } from '../components/features/Search';
 import { ErrorPage } from '../components/elements/ErrorPage';
-import { CategorySelect } from '../components/features/Filters/CategorySelect';
+import { CategorySelect } from '../components/features/CategorySelect';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +20,12 @@ const Home: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(fetchProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearFilters());
+    };
   }, [dispatch]);
 
   const filteredItems = items.filter((item) => {
@@ -67,27 +73,21 @@ const Home: React.FC = () => {
           <Box
             sx={{
               display: 'flex',
-              justifyContent: {
-                xs: 'center',
-                md: 'end',
+              flexDirection: {
+                xs: 'column-reverse',
+                md: 'row',
               },
-              width: '100%',
-            }}
-          >
-            <Search />
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
               justifyContent: {
                 xs: 'center',
                 md: 'space-between',
               },
               alignItems: 'center',
+              gap: 3,
               width: '100%',
             }}
           >
             <CategorySelect categories={uniqueCategories} />
+            <Search />
           </Box>
           {!filteredItems.length && status === 'success' ? (
             <ErrorPage page="EmptyFilter" showButton={false} />
