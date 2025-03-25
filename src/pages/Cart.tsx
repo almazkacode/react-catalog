@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../redux/store';
 import { cartSelector, clearItems } from '../redux/slices/cartSlice';
 
-import { ErrorPage } from '../components/ErrorPage';
+import { ErrorPage } from '../components/elements/ErrorPage';
 import CartItem from '../components/CartItem';
 
 const Cart: React.FC = () => {

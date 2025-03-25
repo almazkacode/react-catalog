@@ -4,8 +4,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 import debounce from 'lodash.debounce';
 import { useCallback, useState } from 'react';
 
-import { useAppDispatch } from '../redux/store';
-import { setSearchValue } from '../redux/slices/filterSlice';
+import { useAppDispatch } from '../../redux/store';
+import { setSearchValue } from '../../redux/slices/filterSlice';
 
 export const Search = () => {
   const dispatch = useAppDispatch();

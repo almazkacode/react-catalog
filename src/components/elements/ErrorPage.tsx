@@ -1,6 +1,6 @@
 import { Button, Typography, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { ERROR_DATA } from '../errorData';
+import { ERROR_DATA } from '../../errorData';
 
 interface ErrorPageProps {
   page: string;

@@ -5,10 +5,10 @@ import { useAppDispatch } from '../redux/store';
 import { fetchProducts, productsSelector } from '../redux/slices/productsSlice';
 import { filterSelector } from '../redux/slices/filterSlice';
 
-import { ProductItem } from '../components/ProductItem/ProductItem';
-import { Skeleton } from '../components/ProductItem/Skeleton';
-import { Search } from '../components/Search';
-import { ErrorPage } from '../components/ErrorPage';
+import { ProductItem } from '../components/elements/ProductItem/ProductItem';
+import { Skeleton } from '../components/elements/ProductItem/Skeleton';
+import { Search } from '../components/features/Search';
+import { ErrorPage } from '../components/elements/ErrorPage';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();

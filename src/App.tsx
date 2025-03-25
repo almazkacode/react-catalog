@@ -3,9 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import { Container, Box, CssBaseline } from '@mui/material';
 import './App.css';
 
-import { Header } from './components/Header';
-import { ErrorPage } from './components/ErrorPage';
-import { Loader } from './components/Loader';
+import { Header } from './components/layout/Header';
+import { ErrorPage } from './components/elements/ErrorPage';
+import { Loader } from './components/features/Loader';
 
 const Home = lazy(() => import('./pages/Home'));
 const Cart = lazy(() => import('./pages/Cart'));

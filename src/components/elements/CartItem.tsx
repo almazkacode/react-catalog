@@ -1,9 +1,9 @@
 import { Box, Typography, IconButton, CardMedia } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { CartItem as CartItemType } from '../redux/slices/cartSlice';
-import { useAppDispatch } from '../redux/store';
-import { removeItem } from '../redux/slices/cartSlice';
-import { CountButton } from './CountButton';
+import { CartItem as CartItemType, removeItem } from '../../redux/slices/cartSlice';
+import { useAppDispatch } from '../../redux/store';
+
+import { CountButton } from '../features/CountButton';
 
 interface CartItemProps {
   item: CartItemType;

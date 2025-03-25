@@ -1,11 +1,10 @@
-import React from 'react';
 import { Card, CardContent, CardMedia, Typography, Button, Box } from '@mui/material';
-import { ProductItemInterface } from '../../redux/slices/productsSlice';
+import { ProductItemInterface } from '../../../redux/slices/productsSlice';
+import { addItem, cartItemsSelector, CartItem } from '../../../redux/slices/cartSlice';
+import { useAppDispatch } from '../../../redux/store';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../redux/store';
-import { addItem, cartItemsSelector, CartItem } from '../../redux/slices/cartSlice';
 
-import { CountButton } from '../CountButton';
+import { CountButton } from '../../features/CountButton';
 
 interface ProductItemProps {
   product: ProductItemInterface;
