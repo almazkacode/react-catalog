@@ -9,7 +9,7 @@ interface CartItemProps {
   item: CartItemType;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ item }) => {
+export const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const dispatch = useAppDispatch();
 
   const handleRemove = () => {
@@ -115,5 +115,3 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
     </Box>
   );
 };
-
-export default CartItem;

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../redux/store';
 import { cartSelector, clearItems } from '../redux/slices/cartSlice';
 
 import { ErrorPage } from '../components/elements/ErrorPage';
-import CartItem from '../components/elements/CartItem';
+import { CartItem } from '../components/elements/CartItem';
 
 const Cart: React.FC = () => {
   const { totalPrice, totalCount, items } = useAppSelector(cartSelector);

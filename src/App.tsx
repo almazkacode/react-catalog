@@ -1,7 +1,7 @@
-import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
 import { Container, Box, CssBaseline } from '@mui/material';
 import './App.css';
+import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import { Header } from './components/layout/Header';
 import { ErrorPage } from './components/elements/ErrorPage';

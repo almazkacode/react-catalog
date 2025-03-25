@@ -1,5 +1,4 @@
-import { MenuItem, Select, InputLabel, FormControl } from '@mui/material';
-import { SelectChangeEvent } from '@mui/material';
+import { MenuItem, Select, InputLabel, FormControl, SelectChangeEvent } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { filterSelector, setCategories } from '../../redux/slices/filterSlice';
