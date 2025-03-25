@@ -31,10 +31,17 @@ const initialState: ProductsSliceState = {
   status: Status.LOADING,
 };
 
-export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
-  const { data } = await axios.get<ProductItemInterface[]>('https://fakestoreapi.com/products');
-  return data;
-});
+export const fetchProducts = createAsyncThunk<ProductItemInterface[], void, { state: RootState }>(
+  'products/fetchProducts',
+  async (_, { getState }) => {
+    const state = getState();
+
+    if (state.products.items.length) return state.products.items;
+
+    const { data } = await axios.get<ProductItemInterface[]>('https://fakestoreapi.com/products');
+    return data;
+  },
+);
 
 export const productsSlice = createSlice({
   name: 'products',
@@ -51,8 +58,10 @@ export const productsSlice = createSlice({
         state.items = [];
       })
       .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<ProductItemInterface[]>) => {
-        state.status = Status.SUCCESS;
-        state.items = action.payload;
+        if (action.payload) {
+          state.status = Status.SUCCESS;
+          state.items = action.payload;
+        }
       })
       .addCase(fetchProducts.rejected, (state) => {
         state.status = Status.ERROR;

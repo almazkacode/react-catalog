@@ -23,8 +23,10 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    if (items.length === 0) {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch, items.length]);
 
   useEffect(() => {
     return () => {
