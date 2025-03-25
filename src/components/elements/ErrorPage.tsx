@@ -15,6 +15,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({ page, showButton = true })
   }
 
   const { title, text } = errorContent;
+
   return (
     <Box
       sx={{

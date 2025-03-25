@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../redux/store';
 import { fetchProducts, productsSelector } from '../redux/slices/productsSlice';
@@ -15,7 +15,11 @@ const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const { items, status } = useAppSelector(productsSelector);
   const { searchValue, category } = useAppSelector(filterSelector);
-  const uniqueCategories = Array.from(new Set(items.map((product) => product.category)));
+
+  const uniqueCategories = useMemo(
+    () => Array.from(new Set(items.map((product) => product.category))),
+    [items],
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,19 +32,21 @@ const Home: React.FC = () => {
     };
   }, [dispatch]);
 
-  const filteredItems = items.filter((item) => {
-    const searchFilter = item.title.toLowerCase().includes(searchValue.toLowerCase());
-    const categoryFilter = category === 'all' || item.category === category;
-    return searchFilter && categoryFilter;
-  });
+  const filteredItems = useMemo(() => {
+    return items.filter((item) => {
+      const searchFilter = item.title.toLowerCase().includes(searchValue.toLowerCase());
+      const categoryFilter = category === 'all' || item.category === category;
+      return searchFilter && categoryFilter;
+    });
+  }, [items, searchValue, category]);
 
-  let content;
-
-  if (status === 'loading') {
-    content = [...new Array(8)].map((_, index) => <Skeleton key={index} />);
-  } else {
-    content = filteredItems.map((product) => <ProductItem key={product.id} product={product} />);
-  }
+  const content = useMemo(() => {
+    if (status === 'loading') {
+      return [...new Array(8)].map((_, index) => <Skeleton key={index} />);
+    } else {
+      return filteredItems.map((product) => <ProductItem key={product.id} product={product} />);
+    }
+  }, [status, filteredItems]);
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', padding: '50px 0', width: '100%' }}>
