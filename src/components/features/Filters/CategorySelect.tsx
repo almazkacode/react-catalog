@@ -1,7 +1,7 @@
 import { MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../../redux/store';
+
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { filterSelector, setCategories } from '../../../redux/slices/filterSlice';
 
 interface CategorySelectProps {
@@ -10,7 +10,7 @@ interface CategorySelectProps {
 
 export const CategorySelect: React.FC<CategorySelectProps> = ({ categories }) => {
   const dispatch = useAppDispatch();
-  const { category } = useSelector(filterSelector);
+  const { category } = useAppSelector(filterSelector);
 
   const handleCategoryChange = (event: SelectChangeEvent<string>) => {
     dispatch(setCategories(event.target.value));

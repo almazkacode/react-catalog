@@ -2,12 +2,12 @@ import { Typography, Box, IconButton, Badge, Container } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../redux/store';
 import { cartSelector } from '../../redux/slices/cartSlice';
 
 export const Header = () => {
   const location = useLocation();
-  const { totalPrice, totalCount } = useSelector(cartSelector);
+  const { totalPrice, totalCount } = useAppSelector(cartSelector);
 
   return (
     <Box

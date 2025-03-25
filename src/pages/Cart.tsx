@@ -1,14 +1,14 @@
 import { Typography, Box, Button, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../redux/store';
+
+import { useAppDispatch, useAppSelector } from '../redux/store';
 import { cartSelector, clearItems } from '../redux/slices/cartSlice';
 
 import { ErrorPage } from '../components/elements/ErrorPage';
-import CartItem from '../components/CartItem';
+import CartItem from '../components/elements/CartItem';
 
 const Cart: React.FC = () => {
-  const { totalPrice, totalCount, items } = useSelector(cartSelector);
+  const { totalPrice, totalCount, items } = useAppSelector(cartSelector);
   const dispatch = useAppDispatch();
 
   const handleClearCart = () => {

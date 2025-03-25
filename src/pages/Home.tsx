@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../redux/store';
+
+import { useAppDispatch, useAppSelector } from '../redux/store';
 import { fetchProducts, productsSelector } from '../redux/slices/productsSlice';
 import { filterSelector } from '../redux/slices/filterSlice';
 
@@ -13,8 +13,8 @@ import { CategorySelect } from '../components/features/Filters/CategorySelect';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { items, status } = useSelector(productsSelector);
-  const { searchValue, category } = useSelector(filterSelector);
+  const { items, status } = useAppSelector(productsSelector);
+  const { searchValue, category } = useAppSelector(filterSelector);
   const uniqueCategories = Array.from(new Set(items.map((product) => product.category)));
 
   useEffect(() => {

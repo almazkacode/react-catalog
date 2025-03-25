@@ -1,8 +1,7 @@
 import { Card, CardContent, CardMedia, Typography, Button, Box } from '@mui/material';
 import { ProductItemInterface } from '../../../redux/slices/productsSlice';
 import { addItem, cartItemsSelector, CartItem } from '../../../redux/slices/cartSlice';
-import { useAppDispatch } from '../../../redux/store';
-import { useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
 
 import { CountButton } from '../../features/CountButton';
 
@@ -14,7 +13,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
   const { title, image, category, price, id } = product;
 
   const dispatch = useAppDispatch();
-  const itemsInCart = useSelector(cartItemsSelector);
+  const itemsInCart = useAppSelector(cartItemsSelector);
   const cartItem = itemsInCart.find((item) => item.id === id);
 
   const handleAddToCart = () => {
